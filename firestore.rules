@@ -1,0 +1,44 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Allow anyone to read from the "users" collection.
+    
+      match /locations/{document=**} {
+      allow read, create, update, delete;
+
+  
+    }
+    match /users/{document=**} {
+      allow read, write, create, get, list, update, delete;
+
+  
+    }
+    
+    match /teachers/{document=**} {
+      allow read, write, create, get, list, update, delete;
+
+  
+    }
+    match /students/{document=**} {
+      allow read, write, create, get, list, update, delete;
+
+  
+    }
+    
+     match /administrators/{document=**} {
+      allow read, write, create, get, list, update, delete;
+
+  
+    }
+    
+     match /events/{document=**} {
+      allow read, write, create, get, list, update, delete;
+    }
+    
+     allow read, write, create, get, list, update, delete: if
+        request.origin == "http://localhost:3000";
+        
+         allow read, write, create, get, list, update, delete: if
+        request.origin == "http://localhost:3001";
+  }
+}
